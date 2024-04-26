@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/konva@9.3.6/konva.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Konva Shape Layering Demo</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+
+      var stage = new Konva.Stage({
+        container: "container",
+        width: width,
+        height: height,
+      });
+
+      var layer = new Konva.Layer();
+      stage.add(layer);
+
+      // создание первой группы и 2 фигур
+      var group1 = new Konva.Group();
+      layer.add(group1);
+
+      var blackRect = new Konva.Rect({
+        x: 20,
+        y: 20,
+        fill: "black",
+        width: 100,
+        height: 100,
+      });
+      group1.add(blackRect);
+
+      var redCircle = new Konva.Circle({
+        x: 70,
+        y: 70,
+        fill: "red",
+        radius: 30,
+      });
+      group1.add(redCircle);
+
+      // сейчас красный круг находится поверх черного прямоугольника
+      // мы можем изменить его zIndex с помощью:
+      redCircle.zIndex(0);
+
+      // если мы хотим вернуть его обратно наверх, мы можем снова изменить его zIndex
+      // или мы можем изменить zIndex черного прямоугольника:
+      blackRect.zIndex(0);
+
+      // после этого zIndex красного круга будет снова изменен на 1:
+      console.log("red circle index: " + redCircle.zIndex());
+
+      // создание второй группы и одной формы
+      var group2 = new Konva.Group();
+      layer.add(group2);
+
+      var greenRect = new Konva.Rect({
+        x: 70,
+        y: 70,
+        width: 100,
+        height: 100,
+        fill: "green",
+      });
+      group2.add(greenRect);
+    </script>
+  </body>
+</html>
