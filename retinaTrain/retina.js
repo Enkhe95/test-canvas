@@ -10,11 +10,12 @@ const stage = new Konva.Stage({
 const layer = new Konva.Layer();
 
 //add draw
-const circle = new Konva.Circle({
-  x: 100,
-  y: 150,
-  radius: 40,
-  fill: "red",
+const line = new Konva.Line({
+  points: [23, 20, 23, 160, 70, 93, 150, 109, 150, 139, 270, 93],
+  fill: "#00D2FF",
+  stroke: "black",
+  strokeWidth: 5,
+  closed: true,
 });
 
 // add image
@@ -28,9 +29,12 @@ imageObj.onload = function () {
     height: 300,
   });
   layer.add(yoda);
-  layer.add(circle);
 };
 imageObj.src = "oct_1.jpeg";
 
 //добавдяем все на сцену
 stage.add(layer);
+
+function drawOnImage() {
+  return layer.add(line);
+}
